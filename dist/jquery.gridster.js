@@ -1,6 +1,6 @@
-/*! gridster.js - v0.5.6 - 2014-09-25
+/*! gridster.js - v0.5.6 - 2016-06-10
 * http://gridster.net/
-* Copyright (c) 2014 ducksboard; Licensed MIT */
+* Copyright (c) 2016 ducksboard; Licensed MIT */
 
 ;(function(root, factory) {
 
@@ -3963,6 +3963,10 @@
 
         if (this.drag_api) {
             this.drag_api.destroy();
+        }
+
+        if (this.resize_api) {
+            this.resize_api.destroy();
         }
 
         this.remove_style_tags();

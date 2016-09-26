@@ -1699,10 +1699,12 @@
             posChanged = true;
         }
 
-        if (this.options.avoid_overlapped_widgets &&
-            !this.can_move_to(
-             {size_x: wgd.size_x, size_y: wgd.size_y}, wgd.col, wgd.row)
-        ) {
+
+        var can_move = this.can_move_to(
+          {size_x: wgd.size_x, size_y: wgd.size_y},
+          wgd.col, wgd.row, this.options.max_rows, this.options.max_cols);
+
+        if (this.options.avoid_overlapped_widgets && !can_move) {
             $.extend(wgd, this.next_position(wgd.size_x, wgd.size_y));
             $el.attr({
                 'data-col': wgd.col,
@@ -2987,7 +2989,7 @@
         var $next_widgets = this.widgets_below($widget);
 
         var can_move_to_new_cell = this.can_move_to(
-            widget_grid_data, widget_grid_data.col, row, $widget);
+            widget_grid_data, widget_grid_data.col, row);
 
         if (can_move_to_new_cell === false) {
             return false;
@@ -3298,7 +3300,7 @@
     * @param {Number} [max_row] The max row allowed.
     * @return {Boolean} Returns true if all cells are empty, else return false.
     */
-    fn.can_move_to = function(widget_grid_data, col, row, max_row) {
+    fn.can_move_to = function(widget_grid_data, col, row, max_row, max_col) {
         var ga = this.gridmap;
         var $w = widget_grid_data.el;
         var future_wd = {
@@ -3317,6 +3319,10 @@
 
         if (max_row && max_row < row + widget_grid_data.size_y - 1) {
             return false;
+        }
+
+        if (max_col && max_col < col + widget_grid_data.size_x - 1) {
+          return false;
         }
 
         this.for_each_cell_occupied(future_wd, function(tcol, trow) {

@@ -1249,10 +1249,11 @@
             bottom: ui.$player.is('.' + this.resize_handle_class + '-y')
         };
 
-        this.$resized_widget.css({
-            'min-width': this.options.widget_base_dimensions[0],
-            'min-height': this.options.widget_base_dimensions[1]
-        });
+        // Disabled to allow for window resize
+        // this.$resized_widget.css({
+        //     'min-width': this.options.widget_base_dimensions[0],
+        //     'min-height': this.options.widget_base_dimensions[1]
+        // });
 
         var nodeName = this.$resized_widget.get(0).tagName;
         this.$resize_preview_holder = $('<' + nodeName + ' />', {

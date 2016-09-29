@@ -3086,9 +3086,9 @@
 
         this.cols = Math.max(min_cols, cols, this.options.min_cols);
 
-        if (max_cols !== Infinity && max_cols >= min_cols && max_cols < this.cols) {
-            this.cols = max_cols;
-        }
+        // if (max_cols !== Infinity && max_cols >= min_cols && max_cols < this.cols) {
+        this.cols = max_cols;
+        // }
 
         // get all rows that could be occupied by the current widgets
         var max_rows = this.options.extra_rows;

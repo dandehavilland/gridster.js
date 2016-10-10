@@ -1270,7 +1270,7 @@
 
         this.$resized_widget.addClass('resizing');
 
-		if (this.options.resize.start) {
+        if (this.options.resize.start) {
             this.options.resize.start.call(this, event, ui, this.$resized_widget);
         }
 
@@ -3117,6 +3117,7 @@
      */
     fn.destroy = function(remove) {
         this.$el.removeData('gridster');
+        this.$widgets.data('coords', null);
 
         // remove bound callback on window resize
         $(window).unbind('.gridster');

@@ -1,4 +1,4 @@
-/*! gridster.js - v0.5.6 - 2016-09-29
+/*! gridster.js - v0.5.6 - 2016-10-10
 * http://gridster.net/
 * Copyright (c) 2016 ducksboard; Licensed MIT */
 
@@ -2117,7 +2117,7 @@
 
         this.$resized_widget.addClass('resizing');
 
-		if (this.options.resize.start) {
+        if (this.options.resize.start) {
             this.options.resize.start.call(this, event, ui, this.$resized_widget);
         }
 
@@ -3964,6 +3964,7 @@
      */
     fn.destroy = function(remove) {
         this.$el.removeData('gridster');
+        this.$widgets.data('coords', null);
 
         // remove bound callback on window resize
         $(window).unbind('.gridster');
